@@ -19,9 +19,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
   eslint:
     name: Linter Check
@@ -29,11 +29,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install dependencies (using cached Yarn)
-        run: yarn install
+      - name: Install dependencies (using cached pnpm)
+        run: pnpm install
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Run linter
-        run: yarn run lint
+        run: pnpm run lint
