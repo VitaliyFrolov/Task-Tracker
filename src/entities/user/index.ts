@@ -1,0 +1,3 @@
+export { 
+    useGetUserDataQuery 
+} from './api';
