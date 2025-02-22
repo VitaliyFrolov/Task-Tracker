@@ -1,0 +1,1 @@
+export { interceptor } from './interceptor';

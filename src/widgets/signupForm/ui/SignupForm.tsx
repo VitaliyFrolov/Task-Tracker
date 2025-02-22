@@ -4,15 +4,16 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { paths } from '@/shared/lib/paths';
 import { TextField, Form } from '@/shared/ui';
-import { onSubmit } from '../model';
 import { 
     emailValidation,
     ISignupData,
     PasswordField, 
-    passwordValidation 
+    passwordValidation, 
+    useRegisterMutation
 } from '@/features/auth';
 
 export const SignupForm: FC = () => {
+    const [ userRegister, { isLoading, isError } ] = useRegisterMutation();
     const { register, handleSubmit, formState: { errors } } = useForm<ISignupData>({
         defaultValues: {
             email: '',
@@ -20,6 +21,21 @@ export const SignupForm: FC = () => {
             repeatPassword: ''
         },
     });
+
+    const onSubmit = async (data: ISignupData) => {
+        try {
+            const response = await userRegister(data).unwrap();
+            const token = response.token;
+            localStorage.setItem('token', token);
+
+            if (token && !isError) {
+                window.location.href = paths.main;
+            }
+            console.log(isLoading);
+        } catch (error) {
+            console.error('Login error', error);
+        }
+    };
 
     return (
         <Form 

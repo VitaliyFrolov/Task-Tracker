@@ -10,7 +10,7 @@ interface NavbarProps {
 }
 
 export const Navbar: FC<NavbarProps> = ({ children }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [ isOpen, setIsOpen ] = useState(false);
 
     const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -41,7 +41,7 @@ export const Navbar: FC<NavbarProps> = ({ children }) => {
             <div
                 ref={menuRef}
                 className={clsx(
-                    "fixed top-0 left-0 h-full w-64 shadow-md transition-transform duration-300",
+                    "fixed top-0 left-0 h-full w-64 shadow-md transition-transform duration-300 z-10",
                     "bg-indigo-200 text-gray-800",
                     isOpen ? "translate-x-0" : "-translate-x-64"
                 )}
@@ -60,6 +60,9 @@ export const Navbar: FC<NavbarProps> = ({ children }) => {
                         </Link>
                         <Link href={paths.boards} className="block px-4 py-2 rounded bg-indigo-300 text-gray-800 hover:bg-indigo-400 transition">
                             Доски
+                        </Link>
+                        <Link href={paths.calendar} className="block px-4 py-2 rounded bg-indigo-300 text-gray-800 hover:bg-indigo-400 transition">
+                            Календарь
                         </Link>
                     </nav>
                 </div>

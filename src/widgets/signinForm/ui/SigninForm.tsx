@@ -4,21 +4,39 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { paths } from '@/shared/lib/paths';
 import { Form, TextField } from '@/shared/ui';
-import { onSubmit } from '../model';
 import { 
     emailValidation,
     ISigninData,
     PasswordField,
-    passwordValidation
+    passwordValidation,
+    useLoginMutation
 } from '@/features/auth';
 
 export const SigninForm: FC = () => {
+    const [ userLogin, { isLoading, isError } ] = useLoginMutation();
+
     const { register, handleSubmit, formState: { errors } } = useForm<ISigninData>({
         defaultValues: {
             email: '',
             password: '',
         },
     });
+
+    const onSubmit = async (data: ISigninData) => {
+        try {
+            const response = await userLogin(data).unwrap();
+            const token = response.token;
+            localStorage.setItem('token', token);
+
+            if (token && !isError) {
+                window.location.href = paths.main;
+            }
+
+            console.log(isLoading);
+        } catch (error) {
+            console.error('Login error', error);
+        }
+    };
 
     return (
         <Form
