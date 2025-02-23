@@ -8,7 +8,7 @@ export const Modal: FC<IModalProps> = (props) => {
         root,
         children,
         active,
-        onClise 
+        onClose
     } = props;
 
     const ref = useRef<Element | null>(null);
@@ -22,7 +22,7 @@ export const Modal: FC<IModalProps> = (props) => {
         <div className='fixed inset-0 z-50 flex items-center justify-center'>
             <div
                 className='fixed inset-0 bg-black opacity-50'
-                onClick={onClise}
+                onClick={onClose}
             />
             <div
                 className={`bg-white rounded-lg shadow-lg p-4 relative ${
