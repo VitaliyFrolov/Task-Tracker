@@ -9,3 +9,4 @@ export { Container } from './container';
 export { SearchInput } from './searchInput';
 export { Divider } from './divider';
 export { ContextMenu } from './contextMenu';
+export { Alert } from './alert';
