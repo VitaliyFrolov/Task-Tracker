@@ -8,12 +8,13 @@ export const Alert: FC<IAlertProps> = ({
     children,
     className,
     severity = "success",
-    variant = "standard"
+    variant = "standard",
+    position = 'bottom-right',
 }) => {
     const severityClass = severityStyles[severity][variant];
 
     return (
-        <div className={twMerge(baseStyles, severityClass, className)}>
+        <div className={twMerge(baseStyles, severityClass, position, className)}>
             <span className="flex-shrink-0 text-lg leading-none">
                 {severityIcons[severity]}
             </span>
