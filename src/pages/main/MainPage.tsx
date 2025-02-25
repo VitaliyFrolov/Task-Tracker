@@ -1,4 +1,4 @@
-import { Container } from "@/shared/ui";
+import { Alert, Container } from "@/shared/ui";
 import { Navbar } from "@/widgets/navbar";
 
 export default function MainPage() {
@@ -6,6 +6,9 @@ export default function MainPage() {
         <Navbar>
             <Container>
                 <h1>Hello App!</h1>
+                <Alert>
+                    text
+                </Alert>
             </Container>
         </Navbar>
     );
